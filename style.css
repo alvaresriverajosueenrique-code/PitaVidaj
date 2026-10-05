@@ -1,0 +1,413 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFF8E1;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ---------------- NAVBAR ---------------- */
+
+header {
+    background-color: #2E7D32;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 15px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span {
+    font-size: 30px;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    color: #FBC02D;
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero {
+    min-height: 500px;
+    padding: 70px 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: linear-gradient(
+        135deg,
+        #FFF8E1,
+        #FFE0E8
+    );
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.etiqueta {
+    color: #E91E63;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 1.1;
+    margin: 15px 0;
+}
+
+.hero h1 span {
+    color: #E91E63;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero-fruta {
+    width: 280px;
+    height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #E91E63;
+    border-radius: 50%;
+
+    font-size: 130px;
+
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* ---------------- BOTONES ---------------- */
+
+.boton {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    background-color: #E91E63;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background-color: #2E7D32;
+    transform: translateY(-3px);
+}
+
+/* ---------------- SECCIONES ---------------- */
+
+.seccion {
+    max-width: 1200px;
+    margin: auto;
+    padding: 70px 25px;
+    text-align: center;
+}
+
+.seccion h2 {
+    color: #2E7D32;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+/* ---------------- TARJETAS ---------------- */
+
+.tarjetas {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+
+    margin-top: 35px;
+}
+
+.tarjeta {
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+    transition: 0.3s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+}
+
+.tarjeta h3 {
+    color: #2E7D32;
+    margin: 10px 0;
+}
+
+.icono {
+    font-size: 50px;
+}
+
+.enlace {
+    text-decoration: none;
+    color: #333;
+}
+
+/* ---------------- COLORES ---------------- */
+
+.colores {
+    background-color: white;
+    max-width: 100%;
+}
+
+.colores-container {
+    max-width: 1000px;
+    margin: 35px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 25px;
+}
+
+.color {
+    background-color: #FFF8E1;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.muestra {
+    height: 100px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.verde {
+    background-color: #2E7D32;
+}
+
+.rosa {
+    background-color: #E91E63;
+}
+
+.amarillo {
+    background-color: #FBC02D;
+}
+
+.crema {
+    background-color: #FFF8E1;
+    border: 1px solid #ddd;
+}
+
+/* ---------------- LLAMADA ---------------- */
+
+.llamada {
+    padding: 70px 20px;
+
+    text-align: center;
+
+    background-color: #2E7D32;
+
+    color: white;
+}
+
+.llamada h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.llamada p {
+    margin-bottom: 25px;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+    background-color: #1B5E20;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+/* ---------------- PÁGINAS EDUCATIVAS ---------------- */
+
+.pagina {
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 25px;
+}
+
+.titulo-pagina {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.titulo-pagina h1 {
+    font-size: 45px;
+    color: #E91E63;
+}
+
+.contenido {
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.contenido h2 {
+    color: #2E7D32;
+    margin-bottom: 15px;
+}
+
+.codigo {
+    background-color: #222;
+    color: #FBC02D;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    overflow-x: auto;
+
+    margin-top: 15px;
+
+    font-family: Consolas, monospace;
+}
+
+.info {
+    border-left: 5px solid #E91E63;
+    padding: 15px;
+    background-color: #FFF0F4;
+}
+
+/* ---------------- CUESTIONARIO ---------------- */
+
+.pregunta {
+    background-color: white;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.pregunta h3 {
+    color: #2E7D32;
+    margin-bottom: 15px;
+}
+
+.opcion {
+    display: block;
+
+    padding: 10px;
+
+    margin: 7px 0;
+
+    background-color: #FFF8E1;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.opcion:hover {
+    background-color: #FFE0E8;
+}
+
+#resultado {
+    text-align: center;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin-top: 25px;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-fruta {
+        width: 200px;
+        height: 200px;
+        font-size: 90px;
+    }
+}

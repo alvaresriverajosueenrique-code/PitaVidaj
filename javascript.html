@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript | Pitajalla</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            🍓 PITAJALLA
+        </div>
+
+        <ul class="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="javascript.html">JavaScript</a></li>
+            <li><a href="jquery.html">jQuery</a></li>
+            <li><a href="json.html">JSON</a></li>
+            <li><a href="hosting.html">Hosting</a></li>
+            <li><a href="cuestionario.html">Cuestionario</a></li>
+        </ul>
+
+    </nav>
+</header>
+
+
+<main class="pagina">
+
+    <div class="titulo-pagina">
+        <h1>JavaScript</h1>
+        <p>El lenguaje que agrega comportamiento e interactividad a una página web.</p>
+    </div>
+
+
+    <section class="contenido">
+
+        <h2>¿Qué es JavaScript?</h2>
+
+        <p>
+            JavaScript es un lenguaje de programación utilizado principalmente
+            para agregar interactividad y comportamiento a las páginas web.
+        </p>
+
+        <p>
+            Permite responder a las acciones realizadas por los usuarios,
+            modificar elementos de una página y crear aplicaciones web
+            interactivas.
+        </p>
+
+    </section>
+
+
+    <section class="contenido">
+
+        <h2>HTML, CSS y JavaScript</h2>
+
+        <p><strong>HTML:</strong> define la estructura de la página.</p>
+
+        <p><strong>CSS:</strong> define el diseño, colores y estilos.</p>
+
+        <p><strong>JavaScript:</strong> agrega comportamiento e interacción.</p>
+
+    </section>
+
+
+    <section class="contenido">
+
+        <h2>Conceptos básicos</h2>
+
+        <p>
+            <strong>Variables:</strong> almacenan información.
+        </p>
+
+        <p>
+            <strong>Funciones:</strong> contienen instrucciones que pueden
+            ejecutarse cuando son llamadas.
+        </p>
+
+        <p>
+            <strong>Eventos:</strong> permiten responder a acciones como
+            hacer clic, mover el mouse o cargar una página.
+        </p>
+
+    </section>
+
+
+    <section class="contenido">
+
+        <h2>Ejemplo práctico</h2>
+
+        <p>
+            El siguiente código cambia el texto de un elemento cuando
+            el usuario hace clic en un botón.
+        </p>
+
+        <pre class="codigo">
+const boton = document.getElementById("boton");
+
+boton.addEventListener("click", function() {
+
+    document.getElementById("mensaje").textContent =
+        "Pitajalla es deliciosa!";
+
+});
+        </pre>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 Pitajalla</p>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS GAMES - Proyecto Web Completo</title>
+<style>
+  :root {
+    --bg-dark: #0F0F1E;
+    --bg-card: #1a1a2e;
+    --cyan: #00F0FF;
+    --purple: #B026FF;
+    --pink: #FF2E63;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-dark);
+    color: var(--white);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(90deg, var(--bg-dark), #1a1a2e);
+    padding: 1rem 2rem;
+    border-bottom: 2px solid var(--cyan);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 10px; }
+  nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  nav button {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+  nav button:hover { color: var(--cyan); border-color: var(--cyan); }
+  nav button.active { background: var(--cyan); color: var(--bg-dark); font-weight: bold; }
+  .page { display: none; padding: 2rem; animation: fadeIn 0.5s; }
+  .page.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: radial-gradient(circle, #1a1a2e 0%, var(--bg-dark) 100%);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .btn {
+    background: var(--pink);
+    color: var(--white);
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+    margin-top: 1rem;
+  }
+  .btn:hover { transform: scale(1.05); }
+  .card {
+    background: var(--bg-card);
+    padding: 2rem;
+    margin: 1rem 0;
+    border-left: 3px solid var(--cyan);
+    border-radius: 4px;
+  }
+  .card.purple { border-left-color: var(--purple); }
+  .card.pink { border-left-color: var(--pink); }
+  .card h2 { margin-bottom: 1rem; }
+  .card ul { margin-left: 1.5rem; }
+  .card li { margin: 0.5rem 0; }
+  code {
+    background: #000;
+    color: var(--cyan);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+  }
+  pre {
+    background: #000;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    border-left: 3px solid var(--purple);
+    margin: 1rem 0;
+  }
+  pre code { background: transparent; padding: 0; }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--purple);
+    margin-top: 3rem;
+  }
+  h1.page-title { margin-bottom: 2rem; }
+  .quiz-card { background: var(--bg-card); padding: 1.5rem; margin: 1rem 0; border-radius: 4px; border-left: 3px solid var(--pink); }
+  .quiz-card label { display: block; padding: 0.3rem 0; cursor: pointer; }
+  .quiz-card label:hover { color: var(--cyan); }
+  #resultado { text-align: center; font-size: 1.2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 2rem; }
+    header { flex-direction: column; gap: 1rem; }
+    nav button { font-size: 0.8rem; padding: 0.4rem 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <svg width="40" height="40" viewBox="0 0 60 60">
+      <polygon points="30,5 55,20 55,45 30,55 5,45 5,20" fill="none" stroke="#00F0FF" stroke-width="2"/>
+      <text x="30" y="38" text-anchor="middle" fill="#B026FF" font-size="22" font-weight="bold" font-family="monospace">N</text>
+    </svg>
+    <strong style="font-size:1.2rem;">NEXUS GAMES</strong>
+  </div>
+  <nav>
+    <button class="nav-btn active" data-page="inicio"> Inicio</button>
+    <button class="nav-btn" data-page="javascript"> JavaScript</button>
+    <button class="nav-btn" data-page="jquery"> jQuery</button>
+    <button class="nav-btn" data-page="json"> JSON</button>
+    <button class="nav-btn" data-page="hosting"> Hosting</button>
+    <button class="nav-btn" data-page="cuestionario"> Cuestionario</button>
+  </nav>
+</header>
+
+<!-- ==================== PAGINA INICIO ==================== -->
+<section id="inicio" class="page active">
+  <div class="hero">
+    <h1>NEXUS GAMES</h1>
+    <p style="font-size:1.3rem;color:var(--cyan);margin-top:1rem;">Donde cada pixel cuenta una historia</p>
+    <button class="btn" onclick="alert('Bienvenido al mundo NEXUS! ')"> Jugar ahora</button>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 style="color:var(--cyan);"> Nuestro Producto</h2>
+      <p><strong>Nombre:</strong> "Echoes of the Void"</p>
+      <p><strong>Genero:</strong> RPG de exploracion con narrativa no lineal</p>
+      <p><strong>Descripcion:</strong> Un viaje a traves de dimensiones paralelas donde cada decision altera el tejido del universo. Arte pixel 2D con mecanicas modernas.</p>
+    </div>
+    <div class="card purple">
+      <h2 style="color:var(--purple);"> Publico Objetivo</h2>
+      <p>Gamers de 16-35 años que valoran las historias profundas, la exploracion y los juegos indie con personalidad propia.</p>
+    </div>
+    <div class="card pink">
+      <h2 style="color:var(--pink);"> Propuesta de Valor</h2>
+      <p>Creamos experiencias unicas que combinan nostalgia del pixel art con mecanicas innovadoras. Cada partida es distinta, cada historia es personal.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:2rem;">
+    <h2 style="color:var(--cyan);"> Paleta de Colores</h2>
+    <div class="grid">
+      <div style="background:#0F0F1E;padding:1rem;border-radius:4px;border:1px solid #333;">
+        <strong style="color:#00F0FF;">#0F0F1E</strong><br>Negro profundo  misterio y sofisticacion
+      </div>
+      <div style="background:#00F0FF;color:#000;padding:1rem;border-radius:4px;">
+        <strong>#00F0FF</strong><br>Cian neon  tecnologia y futuro
+      </div>
+      <div style="background:#B026FF;padding:1rem;border-radius:4px;">
+        <strong>#B026FF</strong><br>Purpura  creatividad e imaginacion
+      </div>
+      <div style="background:#FF2E63;padding:1rem;border-radius:4px;">
+        <strong>#FF2E63</strong><br>Rosa magenta  energia y pasion
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAGINA JAVASCRIPT ==================== -->
+<section id="javascript" class="page">
+  <h1 class="page-title" style="color:var(--cyan);"> JavaScript (JS Vanilla)</h1>
+
+  <div class="card">
+    <h2>Que es JavaScript?</h2>
+    <p>JavaScript es un lenguaje de programacion interpretado que se ejecuta en el navegador. Permite crear <strong>comportamiento interactivo</strong> en las páginas web: animaciones, validación de formularios, juegos, etc.</p>
+  </div>
+
+  <div class="card purple">
+    <h2>HTML vs CSS vs JS</h2>
+    <ul>
+      <li><strong>HTML:</strong> Estructura (el esqueleto de la pagina)</li>
+      <li><strong>CSS:</strong> Estilo (la ropa y apariencia)</li>
+      <li><strong>JS:</strong> Comportamiento (los musculos y movimiento)</li>
+    </ul>
+  </div>
+
+  <div class="card pink">
+    <h2>Conceptos basicos</h2>
+    <ul>
+      <li><strong>Variables:</strong> Guardan datos (<code>let</code>, <code>const</code>)</li>
+      <li><strong>Funciones:</strong> Bloques de codigo reutilizables</li>
+      <li><strong>Eventos:</strong> Acciones del usuario (click, hover, keypress)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Ejemplo practico</h2>
+<pre><code>// Variable
+let puntos = 0;
+
+// Funcion
+function sumarPunto() {
+  puntos = puntos + 1;
+  document.getElementById("contador").innerText = "Puntos: " + puntos;
+}
+
+// Evento
+document.getElementById("btn").addEventListener("click", sumarPunto);</code></pre>
+    <button id="btn-demo" class="btn"> Haz click!</button>
+    <span id="contador" style="margin-left:1rem;font-size:1.2rem;">Puntos: 0</span>
+  </div>
+</section>
+
+<!-- ==================== PAGINA JQUERY ==================== -->
+<section id="jquery" class="page">
+  <h1 class="page-title" style="color:var(--purple);"> jQuery</h1>
+
+  <div class="card">
+    <h2>Que es jQuery?</h2>
+    <p>jQuery es una <strong>libreria de JavaScript</strong> creada en 2006 por John Resig. Su objetivo: simplificar el manejo del DOM, eventos y animaciones con menos codigo.</p>
+  </div>
+
+  <div class="card purple">
+    <h2>Sintaxis basica</h2>
+    <p>Todo empieza con <code>$</code> (el simbolo de jQuery):</p>
+<pre><code>$(selector).accion();
+
+// Ejemplo: ocultar un elemento
+$("#miElemento").hide();
+
+// Ejemplo: al hacer click
+$("button").click(function(){
+  alert("Click!");
+});</code></pre>
+  </div>
+
+  <div class="card pink">
+    <h2>Ventajas vs Desventajas</h2>
+    <p>✅ <strong>Ventajas:</strong> Codigo mas corto, compatible con navegadores antiguos, muchas animaciones listas.</p>
+    <p>❌ <strong>Desventajas:</strong> JS moderno (ES6+) ya hace casi todo, añade peso al sitio, menos usado en proyectos nuevos.</p>
+  </div>
+
+  <div class="card">
+    <h2>Demostracion de efectos</h2>
+    <button class="btn" id="btnFade">fadeIn / fadeOut</button>
+    <button class="btn" id="btnSlide" style="background:var(--purple);">slideToggle</button>
+    <div id="caja" style="background:var(--cyan);color:#000;padding:2rem;margin-top:1rem;text-align:center;font-weight:bold;border-radius:4px;">
+      Soy una caja animada!
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PAGINA JSON ==================== -->
+<section id="json" class="page">
+  <h1 class="page-title" style="color:var(--pink);"> JSON</h1>
+
+  <div class="card">
+    <h2>Que es JSON?</h2>
+    <p><strong>JavaScript Object Notation</strong>  formato ligero de intercambio de datos. Es texto plano, fácil de leer para humanos y máquinas. Es el estándar para APIs web.</p>
+  </div>
+
+  <div class="card purple">
+    <h2>Estructura basica</h2>
+    <ul>
+      <li><strong>Pares clave-valor:</strong> <code>"nombre": "valor"</code></li>
+      <li><strong>Objetos:</strong> entre llaves <code>{ }</code></li>
+      <li><strong>Arreglos:</strong> entre corchetes <code>[ ]</code></li>
+    </ul>
+  </div>
+
+  <div class="card pink">
+    <h2>Objeto JS vs Cadena JSON</h2>
+    <p><strong>Objeto JavaScript:</strong></p>
+<pre><code>let jugador = {
+  nombre: "Link",
+  vida: 100,
+  items: ["espada", "escudo"]
+};</code></pre>
+    <p style="margin-top:1rem;"><strong>Cadena JSON:</strong></p>
+<pre><code>'{"nombre":"Link","vida":100,"items":["espada","escudo"]}'</code></pre>
+    <p style="margin-top:1rem;"> En JSON las claves <strong>siempre</strong> van entre comillas dobles.</p>
+  </div>
+
+  <div class="card">
+    <h2>Conversion en JS</h2>
+<pre><code>// Objeto  JSON (enviar al servidor)
+let texto = JSON.stringify(jugador);
+
+// JSON  Objeto (recibir del servidor)
+let datos = JSON.parse(texto);</code></pre>
+  </div>
+
+  <div class="card purple">
+    <h2>Para que se usa?</h2>
+    <p>Cuando tu web se comunica con un servidor (API), los datos viajan en JSON. Ejemplo: obtener el ranking de jugadores, cargar inventario, guardar partida.</p>
+  </div>
+</section>
+
+<!-- ==================== PAGINA HOSTING ==================== -->
+<section id="hosting" class="page">
+  <h1 class="page-title" style="color:var(--cyan);"> Web Hosting y Dominios</h1>
+
+  <div class="card">
+    <h2>Que es Web Hosting?</h2>
+    <p>Es un servicio que almacena los archivos de tu sitio web en un servidor conectado a internet 24/7, para que cualquiera pueda visitarlo.</p>
+  </div>
+
+  <div class="card purple">
+    <h2>Tipos de Hosting</h2>
+    <ul>
+      <li><strong>Compartido:</strong> Varios sitios en un mismo servidor. Barato, limitado.</li>
+      <li><strong>VPS:</strong> Servidor virtual privado. Mas recursos, mas caro.</li>
+      <li><strong>En la nube (Cloud):</strong> Red de servidores escalable. Ej: AWS, Vercel.</li>
+    </ul>
+  </div>
+
+  <div class="card pink">
+    <h2>Como funciona Vercel?</h2>
+    <p>Vercel es una plataforma para sitios estaticos y aplicaciones frontend. Se conecta a tu repositorio de GitHub y despliega automaticamente cada vez que haces push. Incluye CDN global para carga rapida.</p>
+  </div>
+
+  <div class="card">
+    <h2>Dominios</h2>
+    <p><strong>Dominio:</strong> Nombre legible para acceder a un sitio (ej: <code>nexusgames.com</code>).</p>
+    <p><strong>TLD:</strong> La extension (.com, .net, .org, .io).</p>
+    <p><strong>Subdominio:</strong> Parte antes del dominio principal (ej: <code>tienda</code>.nexusgames.com).</p>
+  </div>
+
+  <div class="card purple">
+    <h2>Propagacion DNS (flujo)</h2>
+<pre><code>Usuario escribe: nexusgames.com
+        ↓
+Servidor DNS traduce → IP del servidor (ej: 76.76.21.21)
+        ↓
+Navegador conecta al servidor
+        ↓
+Servidor entrega los archivos HTML/CSS/JS
+        ↓
+Sitio visible!</code></pre>
+    <p> La propagacion DNS puede tardar hasta 48 horas mundialmente.</p>
+  </div>
+</section>
+
+<!-- ==================== PAGINA CUESTIONARIO ==================== -->
+<section id="cuestionario" class="page">
+  <h1 class="page-title" style="color:var(--pink);text-align:center;"> Cuestionario Web</h1>
+  <p style="text-align:center;margin-bottom:2rem;">Pon a prueba tus conocimientos (10 preguntas)</p>
+
+  <form id="quiz">
+    <div class="quiz-card">
+      <p><strong>1. Que diferencia principal tiene JavaScript respecto a HTML y CSS?</strong></p>
+      <label><input type="radio" name="q1" value="a"> Da estructura a la pagina</label>
+      <label><input type="radio" name="q1" value="b"> Da estilo visual</label>
+      <label><input type="radio" name="q1" value="c"> Da comportamiento e interactividad</label>
+      <label><input type="radio" name="q1" value="d"> Almacena datos en el servidor</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>2. Que simbolo identifica a jQuery?</strong></p>
+      <label><input type="radio" name="q2" value="a"> #</label>
+      <label><input type="radio" name="q2" value="b"> $</label>
+      <label><input type="radio" name="q2" value="c"> @</label>
+      <label><input type="radio" name="q2" value="d"> &</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>3. Que significa JSON?</strong></p>
+      <label><input type="radio" name="q3" value="a"> Java Standard Object Network</label>
+      <label><input type="radio" name="q3" value="b"> JavaScript Object Notation</label>
+      <label><input type="radio" name="q3" value="c"> JavaScript Oriented Node</label>
+      <label><input type="radio" name="q3" value="d"> Java Simple Object Network</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>4. Cual NO es un tipo de Web Hosting?</strong></p>
+      <label><input type="radio" name="q4" value="a"> Compartido</label>
+      <label><input type="radio" name="q4" value="b"> VPS</label>
+      <label><input type="radio" name="q4" value="c"> Nube</label>
+      <label><input type="radio" name="q4" value="d"> Compilado</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>5. Que es un TLD?</strong></p>
+      <label><input type="radio" name="q5" value="a"> Tipo de Lenguaje Digital</label>
+      <label><input type="radio" name="q5" value="b"> Top-Level Domain (.com, .net)</label>
+      <label><input type="radio" name="q5" value="c"> Total Link Data</label>
+      <label><input type="radio" name="q5" value="d"> Transfer Layer Domain</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>6. Que metodo convierte un objeto JS en cadena JSON?</strong></p>
+      <label><input type="radio" name="q6" value="a"> JSON.parse()</label>
+      <label><input type="radio" name="q6" value="b"> JSON.stringify()</label>
+      <label><input type="radio" name="q6" value="c"> JSON.convert()</label>
+      <label><input type="radio" name="q6" value="d"> JSON.toString()</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>7. Vercel se conecta automaticamente con...</strong></p>
+      <label><input type="radio" name="q7" value="a"> Dropbox</label>
+      <label><input type="radio" name="q7" value="b"> GitHub</label>
+      <label><input type="radio" name="q7" value="c"> Google Drive</label>
+      <label><input type="radio" name="q7" value="d"> OneDrive</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>8. Que metodo de jQuery hace aparecer/desaparecer un elemento con deslizamiento?</strong></p>
+      <label><input type="radio" name="q8" value="a"> fadeToggle()</label>
+      <label><input type="radio" name="q8" value="b"> slideToggle()</label>
+      <label><input type="radio" name="q8" value="c"> showToggle()</label>
+      <label><input type="radio" name="q8" value="d"> moveToggle()</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>9. Cuanto puede tardar la propagacion DNS?</strong></p>
+      <label><input type="radio" name="q9" value="a"> 1 minuto</label>
+      <label><input type="radio" name="q9" value="b"> 1 hora</label>
+      <label><input type="radio" name="q9" value="c"> Hasta 48 horas</label>
+      <label><input type="radio" name="q9" value="d"> 1 semana</label>
+    </div>
+
+    <div class="quiz-card">
+      <p><strong>10. En JSON, las claves deben ir entre...</strong></p>
+      <label><input type="radio" name="q10" value="a"> Comillas simples</label>
+      <label><input type="radio" name="q10" value="b"> Comillas dobles</label>
+      <label><input type="radio" name="q10" value="c"> Parentesis</label>
+      <label><input type="radio" name="q10" value="d"> Nada, solo el nombre</label>
+    </div>
+
+    <button type="button" class="btn" onclick="calificar()" style="display:block;margin:2rem auto;padding:1rem 3rem;font-size:1.1rem;">✅ Enviar respuestas</button>
+  </form>
+
+  <div id="resultado" class="card" style="display:none;"></div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>NEXUS GAMES</strong> Proyecto Educativo Web</p>
+  <p style="color:#888;margin-top:0.5rem;font-size:0.9rem;">Desarrollado con HTML, CSS y JavaScript vanilla </p>
+</footer>
+
+<script>
+  // ===== NAVEGACION ENTRE PAGINAS =====
+  const botones = document.querySelectorAll('.nav-btn');
+  const paginas = document.querySelectorAll('.page');
+
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.page;
+      botones.forEach(b => b.classList.remove('active'));
+      paginas.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // ===== DEMO JAVASCRIPT =====
+  let puntos = 0;
+  const btnDemo = document.getElementById('btn-demo');
+  const contador = document.getElementById('contador');
+  if (btnDemo) {
+    btnDemo.addEventListener('click', () => {
+      puntos++;
+      contador.innerText = "Puntos: " + puntos;
+    });
+  }
+
+  // ===== DEMO JQUERY (animacion simulada sin libreria) =====
+  const caja = document.getElementById('caja');
+  const btnFade = document.getElementById('btnFade');
+  const btnSlide = document.getElementById('btnSlide');
+  if (btnFade) {
+    btnFade.addEventListener('click', () => {
+      caja.style.transition = 'opacity 0.5s';
+      caja.style.opacity = caja.style.opacity === '0' ? '1' : '0';
+    });
+  }
+  if (btnSlide) {
+    btnSlide.addEventListener('click', () => {
+      caja.style.transition = 'max-height 0.5s, padding 0.5s, margin 0.5s';
+      if (caja.style.maxHeight === '0px') {
+        caja.style.maxHeight = '200px';
+        caja.style.padding = '2rem';
+        caja.style.marginTop = '1rem';
+      } else {
+        caja.style.maxHeight = '0px';
+        caja.style.padding = '0';
+        caja.style.marginTop = '0';
+        caja.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  // ===== CUESTIONARIO =====
+  const respuestas = {
+    q1: "c", q2: "b", q3: "b", q4: "d", q5: "b",
+    q6: "b", q7: "b", q8: "b", q9: "c", q10: "b"
+  };
+
+  function calificar() {
+    let correctas = 0;
+    const form = document.getElementById("quiz");
+    for (let q in respuestas) {
+      const sel = form.querySelector(`input[name="${q}"]:checked`);
+      if (sel && sel.value === respuestas[q]) correctas++;
+    }
+    const resDiv = document.getElementById("resultado");
+    resDiv.style.display = "block";
+    let msg = `<h2 style="color:var(--cyan);">Resultado: ${correctas}/10</h2>`;
+    if (correctas === 10) msg += "<p style='font-size:1.5rem;margin-top:1rem;'> Perfecto! Eres un maestro web.</p>";
+    else if (correctas >= 7) msg += "<p style='font-size:1.3rem;margin-top:1rem;'> Muy bien! Casi lo dominas.</p>";
+    else if (correctas >= 5) msg += "<p style='font-size:1.3rem;margin-top:1rem;'> Aceptable, pero repasa un poco mas.</p>";
+    else msg += "<p style='font-size:1.3rem;margin-top:1rem;'> Necesitas repasar las paginas anteriores.</p>";
+    resDiv.innerHTML = msg;
+    resDiv.scrollIntoView({ behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>
